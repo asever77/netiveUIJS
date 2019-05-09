@@ -199,6 +199,19 @@ if (!Object.keys){
 			};
 	})();
 
+	HTMLElement.prototype.closestByClass = function(className) {
+		var target = this;
+
+		while (!target.parentElement.classList.contains(className)) {
+			target = target.parentElement;
+			target
+			if (target.parentElement === null) {
+				throw new Error('Not found.');
+			}
+		}
+		return target.parentElement;
+	};
+
 	//jquery easing add
 	// for (easing in easings) {
 	// 	$.easing[easing] = (function(easingname) {

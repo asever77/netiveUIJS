@@ -43,9 +43,9 @@
 			level = opt.lavel,
 			$acco = doc.querySelector('#' + id),
 			$wrap = $acco.children,
-			$pnl = doc.querySelectorAll('#' + id + ' .ui-acco-pnl'),
-			$tit = doc.querySelectorAll('#' + id + ' .ui-acco-tit'),
-			$btn = doc.querySelectorAll('#' + id + ' .ui-acco-btn'),
+			$pnl = doc.querySelectorAll('#' + id + '> .ui-acco-wrap > .ui-acco-pnl'),
+			$tit = doc.querySelectorAll('#' + id + '> .ui-acco-wrap >  .ui-acco-tit'),
+			$btn = doc.querySelectorAll('#' + id + '> .ui-acco-wrap > .ui-acco-tit > .ui-acco-btn'),
 			len = $wrap.length, 
 			keys = $ui.option.keys,
 			i = 0, 
@@ -53,7 +53,7 @@
 			para = $ui.uiPara('acco'),
 			paras,
 			paraname;
-		console.log(opt);
+
 		//set up
 		if (!!para) {
 			if (para.split('+').length > 1) {
@@ -78,43 +78,52 @@
 		}
 
 		//set up
-		!$pnl ? $pnl = $tit.children('.ui-acco-pnl') : '';
-		$acco
-			.setAttribute('role','presentation')
-			.data('opt', { 
-				id:id, 
-				close: autoclose, 
-				callback: callback
-			});
-		$tit.setAttribute('role','heading')
-			.setAttribute('aria-level', level);
-		$pnl.setAttribute('role','region');
+		//!$pnl ? $pnl = $tit.children('.ui-acco-pnl') : '';
+		
+		$acco.setAttribute('role','presentation');
+		// $tit.setAttribute('role','heading');
+		// $tit.setAttribute('aria-level', level);
+		// $pnl.setAttribute('role','region');
+
+		$acco.setAttribute('data-opt', { 
+			id:id, 
+			close: autoclose, 
+			callback: callback
+		}) ;
+
+		$acco.setAttribute('data-id', id);
+		$acco.setAttribute('data-close', autoclose);
+		$acco.setAttribute('data-callback', callback);
 
 		for (i = 0; i < len; i++) {
-			var $accobtn = $wrap.eq(i).find('> .ui-acco-tit > .ui-acco-btn'),
-				$accotit = $wrap.eq(i).find('> .ui-acco-tit'),
-				$accopln = $wrap.eq(i).find('> .ui-acco-pnl');
+			var $accobtn = document.querySelectorAll('#' + id + ' > .ui-acco-wrap:nth-child('+ (i + 1) +') > .ui-acco-tit > .ui-acco-btn'), 
+				//$wrap[i].find('> .ui-acco-tit > .ui-acco-btn'),
+				$accotit = document.querySelectorAll('#' + id + ' > .ui-acco-wrap:nth-child('+ (i + 1) +') > .ui-acco-tit'),
+				//$wrap.eq(i).find('> .ui-acco-tit'),
+				$accopln = document.querySelectorAll('#' + id + ' > .ui-acco-wrap:nth-child('+ (i + 1) +') > .ui-acco-pnl');
+				//$wrap.eq(i).find('> .ui-acco-pnl');
 			
-			!$accopln ? $accopln = $accotit.children('.ui-acco-pnl') : '';
-			$accotit.attr('id') === undefined ? $accobtn.attr('id', id + '-btn' + i) : '';
-			$accopln.attr('id') === undefined ? $accopln.attr('id', id + '-pnl' + i) : '';
-			
-			$accobtn
-				.data('selected', false)
-				.attr('data-n', i)
-				.attr('data-len', len)
-				.attr('aria-expanded', false)
-				.attr('aria-controls', $accopln.attr('id'))
-				.removeClass('selected')
-				.find('.ui-acco-arrow').text('열기');
-			$accopln
-				.attr('data-n', i)
-				.attr('data-len', len)
-				.attr('aria-labelledby', $accobtn.attr('id'))
-				.attr('aria-hidden', true).hide();
+			//!$accopln ? $accopln = $accotit.children('.ui-acco-pnl') : '';
 
-			i === 0 ? $accobtn.attr('acco-first', true) : '';
-			i === len - 1 ? $accobtn.attr('acco-last', true) : ''
+			$accotit[0].getAttribute('id') === null ? $accobtn[0].setAttribute('id', id + '-btn' + i) : '';
+			$accopln[0].getAttribute('id') === null ? $accopln[0].setAttribute('id', id + '-pnl' + i) : '';
+			
+			$accobtn[0].setAttribute('data-selected', false);
+			$accobtn[0].setAttribute('data-n', i);
+			$accobtn[0].setAttribute('data-len', len);
+			$accobtn[0].setAttribute('aria-expanded', false);
+			$accobtn[0].setAttribute('aria-controls', $accopln[0].getAttribute('id'));
+			$accobtn[0].classList.remove('selected');
+				// .removeClass('selected')
+				// .find('.ui-acco-arrow').text('열기');
+			$accopln[0].setAttribute('data-n', i);
+			$accopln[0].setAttribute('data-len', len);
+			$accopln[0].setAttribute('aria-labelledby', $accobtn[0].getAttribute('id'));
+			$accopln[0].setAttribute('aria-hidden', true);
+			//$accopln[0].style.display = 'none';
+
+			i === 0 ? $accobtn[0].setAttribute('acco-first', true) : '';
+			i === len - 1 ? $accobtn[0].setAttribute('acco-last', true) : ''
 		}
 		
 		current !== null ? 
@@ -125,25 +134,33 @@
 			}) : '';
 
 		//event
-		$btn.off('click.uiaccotab keydown.uiaccotab')
-			.on({
-				'click.uiaccotab': evtClick,
-				'keydown.uiaccotab': evtKeys
-			});
+		console.log($btn);
+		[].forEach.call($btn, function($btn) {
+			$btn.addEventListener('click', evtClick, false);
+			$btn.addEventListener('keydown', evtKeys, false);
+		});
+
+
+
+		//$btn.addEventListener('click', evtClick);
+		//$btn.addEventListener('keydown', evtKeys);
+			// 	'click.uiaccotab': evtClick,
+			// 	'keydown.uiaccotab': evtKeys
+			// });
 
 		function evtClick(e) {
-			if (!!$(this).closest('.ui-acco-wrap').find('.ui-acco-pnl').length) {
-				e.preventDefault();
-				var $this = $(this);
+			//if (!!$(this).closest('.ui-acco-wrap').find('.ui-acco-pnl').length) {
+			e.preventDefault();
+			var $this = this,
+				$optAcco = $this.closestByClass('ui-acco');
 
-				optAcco = $this.closest('.ui-acco').data('opt');
-				$ui.uiAccordionToggle({ 
-					id: optAcco.id, 
-					current: [$this.data('n')], 
-					close: optAcco.close, 
-					callback: optAcco.callback
-				});
-			}
+			$ui.uiAccordionToggle({ 
+				id: $optAcco.getAttribute('data-id'), 
+				current: [$this.getAttribute('data-n')], 
+				close: $optAcco.getAttribute('data-close'), 
+				callback:$optAcco.getAttribute('data-callback')
+			});
+			//}
 		}
 		function evtKeys(e) {
 			var $this = $(this),
@@ -200,17 +217,18 @@
 		if (opt === undefined) {
 			return false;
 		}
-		
+		console.log(opt.id);
 		var id = opt.id,
-			$acco = $('#' + id),
-			dataOpt = $acco.data('opt'),
+			$acco = doc.querySelector('#' + id),
+			dataOpt = $acco.getAttribute('data-opt'),
 			current = opt.current === undefined ? null : opt.current,
-			callback = opt.callback === undefined ? dataOpt.callback : opt.callback,
+			callback = opt.callback === undefined ? $acco.getAttribute('data-callback') : opt.callback,
 			state = opt.state === undefined ? 'toggle' : opt.state,
 			motion = opt.motion === undefined ? true : opt.motion,
-			autoclose = dataOpt.close,
+			autoclose = $acco.getAttribute('data-close'),
 			open = null,
-			$wrap = $acco.children('.ui-acco-wrap'),
+			$wrap =  doc.querySelectorAll('#' + id + ' > .ui-acco-wrap'),
+				//$acco.children('.ui-acco-wrap'),
 			$pnl,
 			$tit,
 			$btn,
@@ -222,22 +240,33 @@
 
 		if (current !== 'all') {
 			for (i = 0 ; i < current.length; i++) {
-				$pnl = $wrap.eq(current[i]).children('.ui-acco-pnl');
-				$tit = $wrap.eq(current[i]).children('.ui-acco-tit');
-				$btn = $tit.find('.ui-acco-btn');
+				console.log('current ' , current[i]);
+				var n_c = Number(current[i]) + 1;
+
+				$pnl = doc.querySelectorAll('#' + id + ' > .ui-acco-wrap:nth-child('+ n_c +') > .ui-acco-pnl'),
+				//$wrap.eq(current[i]).children('.ui-acco-pnl');
+				$tit = doc.querySelectorAll('#' + id + ' > .ui-acco-wrap:nth-child('+ n_c +') > .ui-acco-tit'),
+				//$wrap.eq(current[i]).children('.ui-acco-tit');
+				$btn = doc.querySelectorAll('#' + id + ' > .ui-acco-wrap:nth-child('+ n_c +') > .ui-acco-tit > .ui-acco-btn');
+				//$tit.find('.ui-acco-btn');
 				
-				if (state === 'toggle') {
-					(!$btn.data('selected')) ? act('down') : act('up');
+
+				if (state === 'toggle') {					
+					console.log('button:   ', $btn[0].getAttribute('data-selected'));
+
+					$btn[0].getAttribute('data-selected') === 'false'
+					? act('down') 
+					: act('up');
+
 				} else {
 					(state === 'open') ? act('down') : (state === 'close') ? act('up') : '';
 				}
 			}
-			!callback ? '' :
-				callback({ 
-					id:id, 
-					open:open, 
-					current:current
-				});
+
+			// !!callback 
+			// ? callback({ id:id, open:open, current:current })
+			// : '';
+
 		} else if (current === 'all') {
 			checking();
 		}
@@ -245,9 +274,22 @@
 		function checking() {
 			//열린상태 체크하여 전체 열지 닫을지 결정
 			c = 0;
-			$wrap.each(function(i){
-				c = ($wrap.eq(i).find('> .ui-acco-tit .ui-acco-btn').attr('aria-expanded') === 'true') ? c + 1 : c + 0;
-			});
+			console.log($wrap.length);
+			for (var j = 0; j < $wrap.length; j++) {
+				console.log('#' + id + ' > .ui-acco-wrap:nth-child('+ (j + 1) +') > .ui-acco-tit > .ui-acco-btn');
+				doc.querySelectorAll('#' + id + ' > .ui-acco-wrap:nth-child('+ (j + 1) +') > .ui-acco-tit > .ui-acco-btn').getAttribute('aria-expanded') === 'true'
+				? c + 1 
+				: c + 0;
+			}
+			// $wrap.forEach(function(element){
+			// 	console.log(element);
+			// 	element.
+			// 	doc.querySelectorAll('#' + id + ' > .ui-acco-wrap:nth-child('+ (i + 1) +') > .ui-acco-tit > .ui-acco-btn').getAttribute('aria-expanded') === 'true'
+			// 	? c + 1 
+			// 	: c + 0;
+			// 	//c = ($wrap.eq(i).find('> .ui-acco-tit .ui-acco-btn').attr('aria-expanded') === 'true') ? c + 1 : c + 0;
+			// });
+
 			//state option 
 			if (state === 'open') {
 				c = 0;
@@ -269,10 +311,10 @@
 		function act(v) {
 			var isDown = v === 'down',
 				a = isDown ? true : false, 
-				cls = isDown ? 'addClass' : 'removeClass', 
+				cls = isDown ? 'add' : 'remove', 
 				updown = isDown ? 'slideDown' : 'slideUp',
 				txt = isDown ? '닫기' : '열기';
-			
+
 			open = isDown ? true : false;
 
 			if (autoclose === true && isDown) {
@@ -291,11 +333,16 @@
 					});
 				});
 			} else {
-				$btn.data('selected', a).attr('aria-expanded', a)[cls]('selected')
-					.find('.ui-acco-arrow').text(txt);
-				$pnl.attr('aria-hidden', !a).stop()[updown](speed, function(){
-					$(this).css({ height: '', padding: '', margin: '' }); // 초기화
-				});
+				$btn[0].setAttribute('data-selected', a);
+				$btn[0].setAttribute('aria-expanded', a);
+				$btn[0].classList[cls]('selected');
+					//.find('.ui-acco-arrow').text(txt);
+				$pnl[0].setAttribute('aria-hidden', !a);
+				$pnl[0].classList[cls]('selected');
+
+				// .stop()[updown](speed, function(){
+				// 	$(this).css({ height: '', padding: '', margin: '' }); // 초기화
+				// });
 			}
 		}
 	}
