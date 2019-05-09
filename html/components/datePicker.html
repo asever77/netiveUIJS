@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="mobile-web-app-capable" content="yes">
+
+	<link rel="apple-touch-icon" href="/netiveUI/resources/img/common/ico_app.png" >
+	<link rel="shortcut icon" href="/netiveUI/resources/img/common/ico_favicon.ico"> 
+
+	<title>Netive UI</title>
+
+	<link rel="stylesheet" href="/netiveUI/resources/css/ui.base.css">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="/netiveUI/resources/js/ui.base.js"></script>
+</head>
+
+<body class="page-datepicker">
+	<div class="base-skip" id="baseSkip"></div>
+	<div class="base-layer" id="baseLayer"></div>
+	<div class="base-wrap" id="baseWrap">
+		<header class="base-header" id="baseHeader"></header>
+		<div class="base-body" id="baseBody">
+			<aside class="base-aside" id="baseAside"></aside>
+			<main class="base-main" id="baseMain" role="main">
+				<div class="tit-wrap">
+					<h1 class="h1" id="uiPageTit">달력</h1>
+				</div>
+				<p class="txt-s2">날짜 선택이나 기간 선택할때 사용한다.<br>
+				PC에서만 사용하며 모바일환경에서는 사용자 단말기의 픽커를 사용하는걸 권장한다.</p>
+
+				<h2 class="h2">Examples</h2>
+				<h3 class="h3">Single Date Picker</h3>				
+				<div class="ui-datepicker inp-datepicker" id="uiDatePicker1">
+					<input class="inp-base" type="date" value="2018-05-20" data-min="2013-10-05" data-max="2020-12-01" title="시작일" id="lnd0060Cal1">
+					<button type="button" class="btn-base ui-drop ui-datepicker-btn" data-inp="lnd0060Cal1" id="uiDatePck1" aria-expanded="false"><i class="material-icons" aria-label="달력 열기">date_range</i></button>
+					<section class="ui-drop-pnl ui-datepicker-wrap" aria-hidden="true" data-id="uiDatePck1" id="uiDatePck1_pnl"></section>
+				</div>
+				<div class="ui-datepicker inp-datepicker" id="uiDatePicker2">
+					<input class="inp-base" type="date" value="2018-08-20" data-min="2013-10-05" data-max="2020-12-01" title="종료일" id="lnd0060Cal2">
+					<button type="button" class="btn-base ui-drop ui-datepicker-btn" data-inp="lnd0060Cal2" id="uiDatePck2" aria-expanded="false"><i class="material-icons" aria-label="달력 열기">date_range</i></button>
+					<section class="ui-drop-pnl ui-datepicker-wrap" aria-hidden="true" data-id="uiDatePck2" id="uiDatePck2_pnl"></section>
+				</div>
+				<h3 class="h3">Multiple Date picker</h3>				
+				<div class="ui-datepicker" id="uiDatePicker3">
+					<div class="inp-datepicker">					
+						<input class="inp-base" type="date" value="2018-08-20" data-min="2013-10-05" data-max="2020-12-01" title="시작일" id="lnd0060Cal3">
+						<span class="txt-mark">~</span>
+						<input class="inp-base" type="date" value="2018-10-20" data-min="2013-10-05" data-max="2020-12-01" title="종료일" id="lnd0060Cal3_end">
+						<button type="button" class="btn-base ui-drop ui-datepicker-btn" data-inp="lnd0060Cal3" id="uiDatePck3" aria-expanded="false">
+							<i class="material-icons" aria-label="달력 열기">date_range</i>
+						</button>
+					</div>
+					<section class="ui-drop-pnl ui-datepicker-wrap" aria-hidden="true" data-id="uiDatePck3" id="uiDatePck3_pnl"></section>
+				</div>
+
+				<div class="ui-datepicker" id="uiDatePicker4">
+					<div class="inp-datepicker">					
+						<input class="inp-base" type="date" value="2018-08-20" data-min="2013-10-05" data-max="2020-12-01" title="시작일" id="lnd0060Cal4">
+						<span class="txt-mark">~</span>
+						<input class="inp-base" type="date" value="2018-10-20" data-min="2013-10-05" data-max="2020-12-01" title="종료일" id="lnd0060Cal4_end">
+						<button type="button" class="btn-base ui-drop ui-datepicker-btn" data-inp="lnd0060Cal4" id="uiDatePck4" aria-expanded="false">
+							<i class="material-icons" aria-label="달력 열기">date_range</i>
+						</button>
+					</div>
+					<section class="ui-drop-pnl ui-datepicker-wrap" aria-hidden="true" data-id="uiDatePck4" id="uiDatePck4_pnl"></section>
+				</div>
+
+				<h2 class="h2">HTML Structure</h2>
+				<h3 class="h3">Single type</h3>
+<div class="box-code">
+<pre>
+<code>
+&lt;div class="ui-datepicker inp-datepicker" id="uiDatePicker1"&gt;
+	&lt;input class="inp-base" type="date" value="2018-05-20" data-min="2013-10-05" data-max="2020-12-01" title="시작일" id="lnd0060Cal1"&gt;
+	&lt;button type="button" class="btn-base ui-drop ui-datepicker-btn" data-inp="lnd0060Cal1" id="uiDatePck1" aria-expanded="false"&gt;
+		&lt;i class="material-icons" aria-label="달력 열기"&gt;date_range&lt;/i&gt;
+	&lt;/button&gt;
+	&lt;section class="ui-drop-pnl ui-datepicker-wrap" aria-hidden="true" data-id="uiDatePck1" id="uiDatePck1_pnl"&gt;&lt;/section&gt;
+&lt;/div&gt;
+</code>
+</pre>
+</div>
+
+				<h3 class="h3">Multiple type</h3>			
+<div class="box-code">
+<pre>
+<code>
+&lt;div class="ui-datepicker" id="uiDatePicker3"&gt;
+	&lt;div class="inp-datepicker"&gt;					
+		&lt;input class="inp-base" type="date" value="2018-08-20" data-min="2013-10-05" data-max="2020-12-01" title="시작일" id="lnd0060Cal3"&gt;
+		&lt;span class="txt-mark"&gt;~&lt;/span&gt;
+		&lt;input class="inp-base" type="date" value="2018-10-20" data-min="2013-10-05" data-max="2020-12-01" title="종료일" id="lnd0060Cal3_end"&gt;
+		&lt;button type="button" class="btn-base ui-drop ui-datepicker-btn" data-inp="lnd0060Cal3" id="uiDatePck3" aria-expanded="false"&gt;
+			&lt;i class="material-icons" aria-label="달력 열기"&gt;date_range&lt;/i&gt;
+		&lt;/button&gt;
+	&lt;/div&gt;
+	&lt;section class="ui-drop-pnl ui-datepicker-wrap" aria-hidden="true" data-id="uiDatePck3" id="uiDatePck3_pnl"&gt;&lt;/section&gt;
+&lt;/div&gt;
+</code>
+</pre>
+</div>
+				<div class="tbl-wrap">
+					<table class="tbl-base type-option">
+						<caption>옵션 설명</caption>
+						<thead>
+							<tr>
+								<th scope="col">태그</th>
+								<th scope="col">속성</th>
+								<th scope="col">값</th>
+								<th scope="col">설명</th>
+							</tr>
+						</thead>
+						<tbody class="txt-l">
+							<tr>
+								<th scope="row" rowspan="4">input type="date"</th>
+								<th scope="row">data-min</th>
+								<td>2013-01-01</td>
+								<td>최소선택 년월일</td>
+							</tr>
+							<tr>
+								<th scope="row">data-max</th>
+								<td>2020-01-01</td>
+								<td>최대선택 년월일</td>
+							</tr>
+							<tr>
+								<th scope="row">id</th>
+								<td>유니크한 아이디이름 A</td>
+								<td>input의 id와 ui-datepicker-btn의 버튼의 data-inp과 동일한 이름 사용</td>
+							</tr>
+							<tr>
+								<th scope="row">id (multi 일 경우)</th>
+								<td>유니크한 아이디이름 A + '_end'</td>
+								<td>시작일 아이디에 _end 를 붙인 이름 규칙으로 아이디 사용</td>
+							</tr>
+
+							<tr>
+								<th scope="row" rowspan="2">class="ui-drop ui-datepicker-btn"</th>
+								<th scope="row">data-inp</th>
+								<td>input의 id(A)와 동일한 이름</td>
+								<td>input과 버튼의 연결역활</td>
+							</tr>
+							<tr>
+								<th scope="row">id</th>
+								<td>유니크한 아이디이름 B</td>
+								<td>dropdown 사용을 위한 버튼 아이디</td>
+							</tr>
+
+							<tr>
+								<th scope="row" rowspan="2">class="ui-drop-pnl ui-datepickr-wrap"</th>
+								<th scope="row">data-id</th>
+								<td>button의 id(B)와 동일한 이름</td>
+								<td>페널과 버튼의 연결역활</td>
+							</tr>
+							<tr>
+								<th scope="row">id</th>
+								<td>button의 id(B) + '_pnl'</td>
+								<td>dropdown 사용을 위한 페널 아이디</td>
+							</tr>
+						</tbody>
+					</table>
+				
+				</div>
+
+				<h2 class="h2">Javascript</h2>
+				<h3 class="h3">$plugins.uiDatePicker</h3>
+<div class="box-code">
+<pre>
+<code>
+//single
+$plugins<span class="na">.uiDatePicker</span>({ <span class="s">
+	selector:'#uiDatePicker1', 
+	openback: function(){ console.log('open callback'); },
+	closeback: function(){ console.log('close callback'); }</span>
+});
+
+//multi
+$plugins<span class="na">.uiDatePicker</span>({ <span class="s">
+	selector:'#uiDatePicker3',
+	multi: true,
+	openback: function(){ console.log('open callback'); },
+	closeback: function(){ console.log('close callback'); }</span>
+});
+
+</code>
+</pre>
+</div>
+
+				
+
+
+			</main>
+		</div>
+		<footer class="base-footer" id="baseFooter"></footer>
+	</div>
+
+	<!-- only page script -->
+	<script>
+		;(function($, win, doc, undefined) {
+			console.log('page ready before')
+			$plugins.common.pageid = 'G_03_05_00_00';
+
+			$(doc).ready(function(){
+				
+				console.log('page ready after')
+				$plugins.uiDatePicker({ 
+					selector:'#uiDatePicker1', 
+					openback: function(){
+						console.log('open callback gg');
+						$('#baseHeader').stop().animate({
+							top:-50
+						},200)
+					},
+					closeback: function(){
+						console.log('close callback gg');
+						$('#baseHeader').stop().animate({
+							top:0
+						},200)
+					}
+				});
+				$plugins.uiDatePicker({ selector:'#uiDatePicker2' });
+
+				$plugins.uiDatePicker({ 
+					selector:'#uiDatePicker3',
+					multi : true
+				});
+
+				$plugins.uiDatePicker({ 
+					selector:'#uiDatePicker4',
+					multi : true,
+					dual : false
+				});
+
+			});
+		})(jQuery, window, document);
+	</script>
+
+</body>
+</html>

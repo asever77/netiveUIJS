@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="mobile-web-app-capable" content="yes">
+
+	<link rel="apple-touch-icon" href="/netiveUI/resources/img/common/ico_app.png" >
+	<link rel="shortcut icon" href="/netiveUI/resources/img/common/ico_favicon.ico"> 
+
+	<title>Netive UI</title>
+
+	<link rel="stylesheet" href="/netiveUI/resources/css/ui.base.css">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="/netiveUI/resources/js/ui.base.js"></script>
+	<style>
+		.ui-bgscroll.n1{display:inline-block; width:25%; height:700px; background:url(/netiveUI/resources/img/dummy/@iu2.jpg) no-repeat 50% 0; }
+		.ui-bgscroll.n4{display:inline-block; width:25%; height:700px; background:url(/netiveUI/resources/img/dummy/@iu2.jpg) no-repeat 50% 0; }
+		.ui-bgscroll.n2{display:inline-block; width:25%;; height:700px; background:url(/netiveUI/resources/img/dummy/@iu2.jpg) no-repeat 50% 0; background-attachment: fixed; }
+		.ui-bgscroll.n3{display:inline-block; width:25%;; height:700px; background:url(/netiveUI/resources/img/dummy/@iu2.jpg) no-repeat 50% 0; background-attachment: fixed;}
+	</style>
+</head>
+
+<body class="page-floating">
+	<div class="base-skip" id="baseSkip"></div>
+	<div class="base-layer" id="baseLayer"></div>
+	<div class="base-wrap" id="baseWrap">
+		<header class="base-header" id="baseHeader"></header>
+		<div class="base-body" id="baseBody">
+			<aside class="base-aside" id="baseAside"></aside>
+			<main class="base-main" id="baseMain" role="main">
+
+				<div class="tit-wrap">
+					<h1 class="h1" id="uiPageTit">스크롤 배경 이미지</h1>
+				</div>
+
+				<p>특정 범위안에서 스크롤에 따라 이동</p>
+
+				<h2 class="h2">Base HTML</h2>
+				<div style="height:500px"></div>
+				<div class="in-wrap">
+					<div class="ui-bgscroll n1" id="uiBgScroll1"></div>
+					<div class="ui-bgscroll n2" ></div> 
+					<div class="ui-bgscroll n3" ></div> 
+					<div class="ui-bgscroll n1" id="uiBgScroll2"></div>
+				</div>
+				<div style="height:800px"></div>
+
+
+			</main>
+		</div>
+		<footer class="base-footer" id="baseFooter"></footer>
+	</div>
+	
+	<!-- only page script -->
+	<script>
+		;(function($, win, doc, undefined) {
+			console.log('page ready before')
+			$plugins.common.pageid = 'G_03_26_00_00';
+
+			$(doc).ready(function(){
+				
+				console.log('page ready after')
+				$plugins.uiBgScrollMove({ id:'uiBgScroll1' });
+				$plugins.uiBgScrollMove({ id:'uiBgScroll2' });
+
+				
+			});
+		})(jQuery, window, document);
+	</script>
+
+</body>
+</html>

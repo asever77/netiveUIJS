@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no, user-scalable=no">
+	
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="mobile-web-app-capable" content="yes">
+
+	<link rel="apple-touch-icon" href="/netiveUI/resources/img/common/ico_app.png" >
+	<link rel="shortcut icon" href="/netiveUI/resources/img/common/ico_favicon.ico"> 
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="/netiveUI/resources/js/ui.global.js"></script>
+  
+	<title> kkmk</title>
+
+
+	<style>
+	.ddd{
+		position:absolute;
+		top:50%;
+		left:50%;
+		margin:-100px 0 0 -100px;	
+		width: 200px;
+		height: 200px;
+		z-index: 1;
+		background:silver;
+		perspective: 900px;
+	}
+	.aa{ 
+	
+    width:100%; height:100%;
+	transform-style: preserve-3d;
+    transition: transform 1s ease;}
+	
+	.aa:hover{transform:rotateY(360deg) ;}
+	</style>
+</head>
+
+<body>
+		<div class="ddd">
+			<div class="aa">
+				<img src="/netiveUI/resources/img/dummy/@test.png" alt="">
+			</div>
+		</div>
+		
+	
+		
+	<script>
+		
+		if ($plugins.uiCookieGet({ name:'aaaaaa' })) {
+			$('#ddd').hide();
+		}
+
+		$plugins.uiCookieSet({ name:'aaaaaa', value:true, term:10 });
+
+		setTimeout(function(){
+			$('.aa').addClass('on');
+		},1000)
+
+
+	</script>
+</body>
+</html>
