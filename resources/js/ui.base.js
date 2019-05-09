@@ -19,9 +19,9 @@
 
 //         $(function () {
 //             var script_file = '';
-//             script_file += '<script src="/netiveUI/resources/js/ui.plugins.js"></script>';
-//             script_file += '<script src="/netiveUI/resources/js/ui.common.js"></script>';
-//             script_file += '<script src="/netiveUI/resources/js/ui.page.js"></script>';
+//             script_file += '<script src="/netiveUIJS/resources/js/ui.plugins.js"></script>';
+//             script_file += '<script src="/netiveUIJS/resources/js/ui.common.js"></script>';
+//             script_file += '<script src="/netiveUIJS/resources/js/ui.page.js"></script>';
 
 //             $('head').append(script_file);
 //         });
@@ -38,9 +38,9 @@
         script_common = document.createElement('script'),
         _reload;
 
-    script_global.src = '/netiveUI/resources/js/ui.global.js';
-    script_plugins.src = '/netiveUI/resources/js/ui.plugins.js';
-    script_common.src = '/netiveUI/resources/js/ui.common.js';
+    script_global.src = '/netiveUIJS/resources/js/ui.global.js';
+    script_plugins.src = '/netiveUIJS/resources/js/ui.plugins.js';
+    script_common.src = '/netiveUIJS/resources/js/ui.common.js';
 
     head.appendChild(script_global);
     //head.appendChild(script_plugins);
@@ -50,13 +50,13 @@
 
 
     // var script_file = '';
-    // //script_file += '<script src="/netiveUI/resources/js/lib/jquery.smoothwheel.js"></script>';
+    // //script_file += '<script src="/netiveUIJS/resources/js/lib/jquery.smoothwheel.js"></script>';
     
 
-    // script_file += '<script src="/netiveUI/resources/js/ui.global.js"></script>';
-    // script_file += '<script src="/netiveUI/resources/js/ui.plugins.js"></script>';
-    // script_file += '<script src="/netiveUI/resources/js/ui.common.js"></script>';
-    // script_file += '<script src="/netiveUI/resources/js/ui.page.js"></script>';
+    // script_file += '<script src="/netiveUIJS/resources/js/ui.global.js"></script>';
+    // script_file += '<script src="/netiveUIJS/resources/js/ui.plugins.js"></script>';
+    // script_file += '<script src="/netiveUIJS/resources/js/ui.common.js"></script>';
+    // script_file += '<script src="/netiveUIJS/resources/js/ui.page.js"></script>';
 
     //$('head').append(script_file);
 

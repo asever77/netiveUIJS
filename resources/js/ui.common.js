@@ -5,8 +5,8 @@
     $plugins.common = {
  
         init: function(){
-            $plugins.uiAjax({ id:'baseHeader', url:'/netiveUI/html/inc/header.html', page:true, callback:$plugins.common.header });
-            //$plugins.uiAjax({ id:'baseFooter', url:'/netiveUI/html/inc/footer.html', page:true, callback:$plugins.common.footer });
+            $plugins.uiAjax({ id:'baseHeader', url:'/netiveUIJS/html/inc/header.html', page:true, callback:$plugins.common.header });
+            //$plugins.uiAjax({ id:'baseFooter', url:'/netiveUIJS/html/inc/footer.html', page:true, callback:$plugins.common.footer });
             
             console.log('------------------------------------------------------')
             
@@ -28,7 +28,7 @@
         
         header: function(){
             console.log('header load');
-            $plugins.uiAjax({ id:'baseAside', url:'/netiveUI/html/inc/aside.html', page:true });
+            $plugins.uiAjax({ id:'baseAside', url:'/netiveUIJS/html/inc/aside.html', page:true });
             $plugins.common.pageid === undefined ? $plugins.common.pageid = "G00_00_00_00" : '';
             
 
@@ -62,7 +62,7 @@
             // }
 
             // $plugins.uiMenu({ 
-            //     url:'/netiveUI/resources/data/menu.json', 
+            //     url:'/netiveUIJS/resources/data/menu.json', 
             //     ctg:'가이드', 
             //     selected: $plugins.common.pageid, 
             //     callback: fncallback 

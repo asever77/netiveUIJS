@@ -16,16 +16,16 @@
             $plugins.uiBrickList({ id:'uiBrickList1', margin:0, response:true });
         //});
         var img_array = [
-            "/netiveUI/resources/img/dummy/@iu16.gif",
-            "/netiveUI/resources/img/dummy/@iu15.jpg",
-            "/netiveUI/resources/img/dummy/@iu14.jpg",
-            "/netiveUI/resources/img/dummy/@iu13.gif",
-            "/netiveUI/resources/img/dummy/@iu12.jpg",
-            "/netiveUI/resources/img/dummy/@iu11.gif",
-            "/netiveUI/resources/img/dummy/@iu10.gif",
-            "/netiveUI/resources/img/dummy/@iu9.jpg",
-            "/netiveUI/resources/img/dummy/@iu8.jpg",
-            "/netiveUI/resources/img/dummy/@iu7.jpg"
+            "/netiveUIJS/resources/img/dummy/@iu16.gif",
+            "/netiveUIJS/resources/img/dummy/@iu15.jpg",
+            "/netiveUIJS/resources/img/dummy/@iu14.jpg",
+            "/netiveUIJS/resources/img/dummy/@iu13.gif",
+            "/netiveUIJS/resources/img/dummy/@iu12.jpg",
+            "/netiveUIJS/resources/img/dummy/@iu11.gif",
+            "/netiveUIJS/resources/img/dummy/@iu10.gif",
+            "/netiveUIJS/resources/img/dummy/@iu9.jpg",
+            "/netiveUIJS/resources/img/dummy/@iu8.jpg",
+            "/netiveUIJS/resources/img/dummy/@iu7.jpg"
             ]
         function randomNum(){
             var n = Math.floor(Math.random() * 10);
@@ -179,14 +179,14 @@
     $plugins.page.jsoncodinglist = function(){
         $plugins.uiCodinglist({
             id: 'uiCodinglist',
-            url: '/netiveUI/resources/data/codinglist.json',
+            url: '/netiveUIJS/resources/data/codinglist.json',
             type: 'text'
         });
     }
 
     $plugins.page.jsonmenu = function(){
 
-        $plugins.uiMenu({ id:'uiTest', url:'/netiveUI/resources/data/menu.json', ctg:'전체', selected:'G_01_03_02_00', callback:fncallback });
+        $plugins.uiMenu({ id:'uiTest', url:'/netiveUIJS/resources/data/menu.json', ctg:'전체', selected:'G_01_03_02_00', callback:fncallback });
         function fncallback(opt){
             var d1 = opt.d1,
                 d2 = opt.d2,
@@ -218,10 +218,10 @@
         $('.btn-base').on('click', function(){
             switch($(this).attr('id')){
             case 'modalOpen1':
-                $plugins.uiModal({ id:'modal_sample1', link:'/netiveUI/html/modal/modalSample1.html', callback:$plugins.page.callback });
+                $plugins.uiModal({ id:'modal_sample1', link:'/netiveUIJS/html/modal/modalSample1.html', callback:$plugins.page.callback });
                 break;
             case 'modalOpen2':
-                $plugins.uiModal({ id:'modal_sample2', link:'/netiveUI/html/modal/modalSample2.html', callback:$plugins.page.callback, width:700 });
+                $plugins.uiModal({ id:'modal_sample2', link:'/netiveUIJS/html/modal/modalSample2.html', callback:$plugins.page.callback, width:700 });
                 break;
             }
 
