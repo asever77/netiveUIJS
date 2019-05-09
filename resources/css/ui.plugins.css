@@ -151,7 +151,7 @@
 a.ui-acco-btn{display:inline-block; text-decoration:none; text-decoration: underline; color:blue}
 a.ui-acco-btn .ui-acco-arrow {transform: rotate(-90deg);}
 .ui-acco-pnl{position:relative; box-sizing:border-box; background:#f9f9f9; border-bottom:1px solid #ccc; margin:0; padding:20px; display:none}
-.ui-acco-pnl.selected{display:block ;}
+.ui-acco-pnl.selected{display:block}
 .ui-acco-arrow{display:block; position:relative; top:2px; width:18px; height:18px; float:right; overflow:hidden; color:transparent; font-size:xx-small}
 .ui-acco-arrow:after,
 .ui-acco-arrow:before{content:""; display:block; width:8px; height:2px; border-radius:2px 2px; background:#656565; position:absolute}
