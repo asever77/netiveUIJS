@@ -1,5 +1,5 @@
 //utils module
-;(function ($, win, doc, undefined) {
+;(function (win, doc, undefined) {
 
 	'use strict';
 
@@ -29,21 +29,23 @@
 		level: 3
 	};
 	function createUiAccordion(opt){
-		if (opt === undefined || !$('#' + opt.id).length) {
+		if (opt === undefined) {
+			console.log(opt);
 			return false;
 		}
 
-		var opt = $.extend(true, {}, $ui.uiAccordion.option, opt),
+		var opt = Object.assign({}, $ui.uiAccordion.option, opt),
+			//opt = $.extend(true, {}, $ui.uiAccordion.option, opt),
 			id = opt.id,
 			current = opt.current,
 			callback = opt.callback,
 			autoclose = opt.autoclose,
 			level = opt.lavel,
-			$acco = $('#' + id),
-			$wrap = $acco.children('.ui-acco-wrap'),
-			$pnl = $wrap.children('.ui-acco-pnl'),
-			$tit = $wrap.children('.ui-acco-tit'),
-			$btn = $tit.find('.ui-acco-btn'),
+			$acco = doc.querySelector('#' + id),
+			$wrap = $acco.children,
+			$pnl = doc.querySelectorAll('#' + id + ' .ui-acco-pnl'),
+			$tit = doc.querySelectorAll('#' + id + ' .ui-acco-tit'),
+			$btn = doc.querySelectorAll('#' + id + ' .ui-acco-btn'),
 			len = $wrap.length, 
 			keys = $ui.option.keys,
 			i = 0, 
@@ -51,8 +53,7 @@
 			para = $ui.uiPara('acco'),
 			paras,
 			paraname;
-		
-		
+		console.log(opt);
 		//set up
 		if (!!para) {
 			if (para.split('+').length > 1) {
@@ -79,15 +80,15 @@
 		//set up
 		!$pnl ? $pnl = $tit.children('.ui-acco-pnl') : '';
 		$acco
-			.attr('role','presentation')
+			.setAttribute('role','presentation')
 			.data('opt', { 
 				id:id, 
 				close: autoclose, 
 				callback: callback
 			});
-		$tit.attr('role','heading')
-			.attr('aria-level', level);
-		$pnl.attr('role','region');
+		$tit.setAttribute('role','heading')
+			.setAttribute('aria-level', level);
+		$pnl.setAttribute('role','region');
 
 		for (i = 0; i < len; i++) {
 			var $accobtn = $wrap.eq(i).find('> .ui-acco-tit > .ui-acco-btn'),
@@ -4569,8 +4570,6 @@
 		if (!base.root.is('.load')) {
 			base.root.addClass('load');
 			uiSlideSet(base);
-
-			
 		}
 	}
 	function uiSlideSet(base){
@@ -6429,7 +6428,7 @@
 	
 	$ui.uiScrolling.option = {
 		act:true,
-		scrollpow: $(win).outerHeight() / 2,
+		scrollpow: win.innerheight / 2,
 		scrlltime: 400,
 		dot_height: 50,
 		current: 0,
@@ -6744,4 +6743,4 @@
 		}
 	}
 
-})(jQuery, window, document);
+})(window, document);

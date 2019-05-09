@@ -3,7 +3,6 @@
     'use strict';
     
     $plugins.common = {
- 
         init: function(){
             $plugins.uiAjax({ id:'baseHeader', url:'/netiveUIJS/html/inc/header.html', page:true, callback:$plugins.common.header });
             //$plugins.uiAjax({ id:'baseFooter', url:'/netiveUIJS/html/inc/footer.html', page:true, callback:$plugins.common.footer });
@@ -27,10 +26,10 @@
         },
         
         header: function(){
-            console.log('header load');
+            
             $plugins.uiAjax({ id:'baseAside', url:'/netiveUIJS/html/inc/aside.html', page:true });
             $plugins.common.pageid === undefined ? $plugins.common.pageid = "G00_00_00_00" : '';
-            
+            console.log('header load', $plugins.common.pageid);
 
             // var timer = '';
             // $('.btn-menu').on('click', function(){

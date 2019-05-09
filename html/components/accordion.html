@@ -16,7 +16,12 @@
 	<link rel="stylesheet" href="/netiveUIJS/resources/css/ui.base.css">
 
 	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
-	<script src="/netiveUIJS/resources/js/ui.base.js"></script>
+	<!-- <script src="/netiveUIJS/resources/js/ui.base.js"></script> -->
+
+	<script src="/netiveUIJS/resources/js/ui.global.js"></script>
+	<script src="/netiveUIJS/resources/js/ui.plugins.js"></script>
+	<script src="/netiveUIJS/resources/js/ui.common.js"></script>
+
 </head>
 
 <body class="page-accordion">
@@ -462,26 +467,35 @@ $plugins<span class="na">.uiAccordionToggle</span>({ <span class="s">
 	<!-- only page script -->
 	<script>
 		;(function(win, doc, undefined) {
-			
 
-			
 			console.log('page ready before');
-	
-			var callback = function(){
-				// Handler when the DOM is fully loaded
-				setTimeout(function() {
-					
-				},10)
-			};
+			$plugins.common.pageid = 'G_03_01_00_00';
+			$plugins.uiReady({ callback: callbackPage });
 
-			if (document.readyState === "complete" || (document.readyState !== "loading" && !document.documentElement.doScroll)) {
-				console.log(22);
-				callback();
-			} else {
-				console.log(33);
-				document.addEventListener("DOMContentLoaded", callback);
+			function callbackPage(){
+				console.log('callback page');
+				$plugins.uiAccordion({ 
+					id: 'exeAcco1', 
+					current: [0], 
+					autoclose: true, 
+					callback: function(v){console.log(v)} 
+				});
+				$plugins.uiAccordion({ 
+					id:'exeAcco2', 
+					current:[0,1], 
+					autoclose:false 
+				});
+				$plugins.uiAccordion({ 
+					id:'exeAcco3', 
+					current:'null', 
+					autoclose:false 
+				});
+				$plugins.uiAccordion({ 
+					id:'exeAcco4', 
+					current:null, 
+					autoclose:false 
+				});
 			}
-
 			
 			
 			// $plugins.common.pageid = 'G_03_01_00_00';

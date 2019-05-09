@@ -347,6 +347,9 @@ if (!Object.keys){
 	})();
 
 	win[global] = win[global].uiNameSpace(namespace, {
+		uiReady: function(opt){
+			return createUiReady(opt);
+		},
 		uiConsoleGuide: function (opt) {
 			return createUiConsoleGuide(opt);
 		},
@@ -418,6 +421,22 @@ if (!Object.keys){
 		}
 		return w;
 	}
+
+	function createUiReady(opt){
+		var callback = function(){
+			// Handler when the DOM is fully loaded
+			$plugins.common.init();
+			var callbackpage = opt.callback;
+			callbackpage !== undefined ? callbackpage() : '';
+		};
+
+		if (document.readyState === "complete" || (document.readyState !== "loading" && !document.documentElement.doScroll)) {
+			callback();
+		} else {
+			document.addEventListener("DOMContentLoaded", callback);
+		}
+	}
+
 	function createUiConsoleGuide(opt) {
 		if (!win[global].browser.ie) {
 			console.log('');
@@ -448,7 +467,8 @@ if (!Object.keys){
 		first: false
 	}
 	function createUivalueCheck(opt){
-		var opt = $.extend(true, {}, win[global].uiValueCheck.option, opt),
+		var opt = Object.assign({}, win[global].uiValueCheck.option, opt),
+			//opt = $.extend(true, {}, win[global].uiValueCheck.option, opt),
 			type = opt.type,
 			target = opt.target,
 			first = opt.first,
@@ -457,7 +477,6 @@ if (!Object.keys){
 			error,
 			err;
 
-		console.log()
 		if (first && target.val().length === 0) {
 			return false;
 		}
@@ -615,18 +634,19 @@ if (!Object.keys){
 			]);
 			return false;
 		}
-		var httpRequest;
-
-		var opt = opt === undefined ? {} : opt,
-			opt = Object.assign(opt,win[global].uiAjax.option),
+		var httpRequest,
+			opt = opt === undefined ? {} : opt,
+			opt = Object.assign({}, win[global].uiAjax.option, opt),
 			//opt = $.extend(true, {}, win[global].uiAjax.option, opt),
 			$id = doc.querySelector('#' + opt.id),
 			callback = opt.callback === undefined ? false : opt.callback,
 			errorCallback = opt.errorCallback === undefined ? false : opt.errorCallback;
 
+		console.log(opt);
+
 		httpRequest = new XMLHttpRequest();
 
-		if(!httpRequest) {
+		if (!httpRequest) {
 			alert('XMLHTTP 인스턴스를 만들 수가 없어요 ㅠㅠ');
 			errorCallback ? errorCallback() : '';
 			return false;
